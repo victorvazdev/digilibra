@@ -9,11 +9,9 @@ from models.book import Book
 from models.author import Author
 from models import Session
 
-# Definindo infomações básicas.
 info = Info(title='Digilibra', version='1.0.0')
 app = OpenAPI(__name__, info=info)
 
-# Definindo tags.
 book_tag = Tag(name='Book', description='Gerenciamento de livros.')
 author_tag = Tag(name='Author', description='Gerenciamento de autores.')
 
