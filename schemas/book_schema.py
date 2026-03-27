@@ -42,10 +42,17 @@ class BookUpdateSchema(BaseModel):
     # Validador para converter strings "null" ou vazias em None
     @field_validator('name', 'author_id', 'quantity', 'value', 'release_date', mode='before')
     @classmethod
-    def empty_to_none(cls, v):
-        if v == "null" or v == "":
+    def empty_to_none(cls, value):
+        '''Converte strings vazias ou a palavra "null" para o tipo None nativo do Python.
+        
+        Isso garante que campos não preenchidos na requisição sejam ignorados 
+        na hora do update, em vez de sobrescreverem os dados atuais do banco 
+        com strings vazias.
+        '''
+        if value in ("", "null"):
             return None
-        return v
+            
+        return value
 
 def display_book(book: Book):
     '''Retorna uma representação em dicionário do objeto Book, 
