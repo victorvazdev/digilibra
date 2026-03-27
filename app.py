@@ -13,4 +13,9 @@ app.register_api(author_bp)
 
 @app.get('/')
 def home():
+    '''Redireciona para a documentação interativa da API.
+    
+    Ao acessar a rota raiz da aplicação, o usuário é automaticamente 
+    encaminhado para a interface gráfica do Swagger gerada pelo OpenAPI3.
+    '''
     return redirect('/openapi/swagger')
