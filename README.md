@@ -29,7 +29,7 @@ python --version
 (Se o seu projeto estiver no GitHub, coloque o link aqui. Se não, pule esta etapa ou deixe apenas a instrução de navegar até a pasta)
 
 ```bash
-git clone [https://github.com/victorvazdev/digilibra_api](https://github.com/victorvazdev/digilibra_api)
+git clone https://github.com/victorvazdev/digilibra_api
 cd digilibra_api
 ```
 
