@@ -34,7 +34,7 @@ def add_book(form: BookSchema):
     try:
         session.add(book)
         session.commit()
-        return display_book(book), 200
+        return display_book(book), 201
     except IntegrityError as e:
         return {'message': f'Erro ao adicionar o livro {book.name}: {e}'}, 409
     except Exception as e:

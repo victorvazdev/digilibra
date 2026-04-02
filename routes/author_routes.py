@@ -24,7 +24,7 @@ def add_author(form: AuthorSchema):
         session.add(author)
         session.commit()
 
-        return {'id': author.id, 'name': author.name}, 200
+        return {'id': author.id, 'name': author.name}, 201
     except IntegrityError:
         return {'message': 'Autor já existe'}, 409
     except Exception as e:

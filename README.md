@@ -70,7 +70,7 @@ flask run --host 0.0.0.0 --port 8000
 
 O servidor será iniciado localmente.
 
-### 📖 Acessando a Documentação (Swagger)
+## 📖 Acessando a Documentação (Swagger)
 Para testar as rotas e ver a documentação interativa, abra o seu navegador e acesse:
 
 👉 http://localhost:8000/openapi/swagger
