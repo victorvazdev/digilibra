@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import List
 
 from models.author import Author
 
@@ -9,21 +9,25 @@ class AuthorSchema(BaseModel):
     '''
     name: str = Field('Rafael V. Martins', description='Nome do autor(a).')
 
+
 class AuthorListSchema(BaseModel):
     '''Define como uma listagem de vários autores será retornada pela API.
     '''
     authors: List[AuthorSchema]
+
 
 class AuthorDeleteSchema(BaseModel):
     '''Define a estrutura dos dados necessários para realizar a exclusão de um autor.
     '''
     id: int = Field(description='ID do autor(a) a ser deletado.')
 
+
 class AuthorUpdateSchema(BaseModel):
     '''Define como os dados de um autor devem ser enviados para permitir a sua atualização.
     '''
     id: int = Field(description='ID do autor a ser atualizado.')
     name: str = Field('Madalene J. Oliveira', description='Novo nome do autor.')
+
 
 class AuthorSearchSchema(BaseModel):
     '''Define a estrutura e os parâmetros necessários para a busca de um autor específico.

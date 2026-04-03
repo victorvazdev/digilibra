@@ -4,6 +4,7 @@ from datetime import date
 
 from models.book import Book
 
+
 class BookSchema(BaseModel):
     '''Define como um novo livro deve ser representado para inserção no banco de dados.
     '''
@@ -13,10 +14,12 @@ class BookSchema(BaseModel):
     value: float = Field(289.6, description='Preço do livro.')
     release_date: Optional[date] = Field(default=date(2025, 10, 12), description='Data de publicação do livro.')
 
+
 class BookListSchema(BaseModel):
     '''Define como uma listagem de vários livros será retornada pela API.
     '''
     books: List[BookSchema]
+
 
 class BookSearchSchema(BaseModel):
     '''Define a estrutura e os parâmetros necessários para a busca de um livro específico.
@@ -24,10 +27,12 @@ class BookSearchSchema(BaseModel):
     name: str = Field('Como Treinar Bíceps', description='Nome do livro a ser buscado.')
     author_id: int = Field(1, description='ID do autor do livro a ser buscado.')
 
+
 class BookDeleteSchema(BaseModel):
     '''Define a estrutura dos dados necessários para realizar a exclusão de um livro.
     '''
     id: int = Field(description='ID do livro a ser deletado.')
+
 
 class BookUpdateSchema(BaseModel):
     '''Define como os dados de um livro devem ser enviados para permitir a sua atualização.
@@ -54,6 +59,7 @@ class BookUpdateSchema(BaseModel):
             
         return value
 
+
 def display_book(book: Book):
     '''Retorna uma representação em dicionário do objeto Book, 
     substituindo o ID do autor pelo seu nome de exibição.
@@ -66,6 +72,7 @@ def display_book(book: Book):
         'value': book.value,
         'release_date': book.release_date
     }
+
 
 def display_book_list(books: List[Book]):
     '''Retorna uma representação em dicionário de uma lista de objetos Book, 

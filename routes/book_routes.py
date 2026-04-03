@@ -11,7 +11,7 @@ book_tag = Tag(name='book', description='Gerenciamento de livros.')
 book_bp = APIBlueprint('book', __name__, abp_tags=[book_tag])
 
 
-@book_bp.post('/book', tags=[book_tag], responses={'200': BookSchema, '400': ErrorSchema})
+@book_bp.post('/book', tags=[book_tag], responses={'201': BookSchema, '400': ErrorSchema})
 def add_book(form: BookSchema):
     '''Cadastra um novo livro no acervo.
     
@@ -67,7 +67,6 @@ def get_book(query: BookSearchSchema):
     session = Session()
 
     db_query = session.query(Book)
-
     db_query = db_query.filter(Book.name == query.name)
     db_query = db_query.filter(Book.author_id == query.author_id)
 

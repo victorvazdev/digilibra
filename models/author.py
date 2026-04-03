@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 
 from models.base import Base
 
+
 class Author(Base):
     '''Representa um autor no sistema.
 

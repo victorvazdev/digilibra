@@ -10,7 +10,7 @@ author_tag = Tag(name='author', description='Gerenciamento de autores.')
 author_bp = APIBlueprint('author', __name__, abp_tags=[author_tag])
 
 
-@author_bp.post('/author', tags=[author_tag], responses={'200': AuthorSchema, '400': ErrorSchema})
+@author_bp.post('/author', tags=[author_tag], responses={'201': AuthorSchema, '400': ErrorSchema})
 def add_author(form: AuthorSchema):
     '''Cadastra um novo autor no sistema.
     
@@ -29,7 +29,8 @@ def add_author(form: AuthorSchema):
         return {'message': 'Autor já existe'}, 409
     except Exception as e:
         return {'message': str(e)}, 400
-    
+
+
 @author_bp.get('/authors', tags=[author_tag], responses={'200': AuthorListSchema, '404': ErrorSchema})
 def get_authors():
     '''Lista todos os autores cadastrados.
@@ -44,7 +45,8 @@ def get_authors():
         return {'authors': []}, 200
     else:
         return display_author_list(authors), 200
-    
+
+
 @author_bp.delete('/author', tags=[author_tag], responses={'200': AuthorDeleteSchema, '404': ErrorSchema})
 def delete_author(query: AuthorDeleteSchema):
     '''Remove um autor do sistema.
@@ -64,7 +66,8 @@ def delete_author(query: AuthorDeleteSchema):
         return {'message': f'O autor {author.name} de ID {author.id} foi removido com sucesso'}, 200
     else:
         return {'message': f'O autor de ID {query.id} não foi encontrado.'}, 404
-    
+
+
 @author_bp.put('/update_author', tags=[author_tag], responses={'200': AuthorListSchema, '404': ErrorSchema})
 def update_author(form: AuthorUpdateSchema):
     '''Atualiza os dados de um autor existente.
@@ -88,7 +91,8 @@ def update_author(form: AuthorUpdateSchema):
         return display_author(author), 200
     except Exception as e:
         return {'message': f'Erro ao atualizar: {str(e)}'}, 400
-    
+
+
 @author_bp.get('/author', tags=[author_tag], responses={'200': AuthorListSchema, '404': ErrorSchema})
 def get_author(query: AuthorSearchSchema):
     '''Busca os detalhes de um autor específico.
@@ -99,9 +103,7 @@ def get_author(query: AuthorSearchSchema):
     session = Session()
 
     db_query = session.query(Author)
-
     db_query = db_query.filter(Author.id == query.id)
-
     author = db_query.first()
 
     if not author:
