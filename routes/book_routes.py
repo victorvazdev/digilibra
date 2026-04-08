@@ -33,9 +33,9 @@ def add_book(form: BookSchema):
         if not author:
             return {'message': 'Autor não encontrado. Crie o autor primeiro.'}, 404
 
-            session.add(book)
-            session.commit()
-            return display_book(book), 201
+        session.add(book)
+        session.commit()
+        return display_book(book), 201
     except IntegrityError as e:
         session.rollback()
         return {'message': f'Erro ao adicionar o livro {book.name}: {e}'}, 409
