@@ -85,6 +85,7 @@ def display_book_list(books: List[Book]):
             'id': book.id,
             'name': book.name,
             'author': book.author_rel.name if book.author_rel else 'Desconhecido',
+            'author_id': book.author_id,
             'quantity': book.quantity,
             'value': book.value,
             'release_date': book.release_date
